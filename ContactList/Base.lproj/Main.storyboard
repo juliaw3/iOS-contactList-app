@@ -8,8 +8,8 @@
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Bold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -58,7 +58,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="659-OW-WMm">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="659-OW-WMm" customClass="ContactCell" customModule="ContactList" customModuleProvider="target">
                                         <rect key="frame" x="1" y="0.0" width="598" height="94"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -93,7 +93,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="wQE-0Z-17l" firstAttribute="top" secondItem="659-OW-WMm" secondAttribute="topMargin" constant="-4" id="CXx-LN-DQ3"/>
                                             <constraint firstItem="K4x-Wv-xLF" firstAttribute="leading" secondItem="wQE-0Z-17l" secondAttribute="trailing" constant="18" id="MWc-pl-5hW"/>
@@ -105,6 +105,10 @@
                                             <constraint firstItem="1vR-71-sUa" firstAttribute="leading" secondItem="wQE-0Z-17l" secondAttribute="trailing" constant="15" id="npO-Gq-Pt3"/>
                                             <constraint firstItem="1vR-71-sUa" firstAttribute="top" secondItem="659-OW-WMm" secondAttribute="topMargin" id="pJ1-fu-Ers"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="nameLbl" destination="1vR-71-sUa" id="dgK-3X-PkS"/>
+                                            <outlet property="numberLbl" destination="K4x-Wv-xLF" id="3nW-xD-TRw"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
