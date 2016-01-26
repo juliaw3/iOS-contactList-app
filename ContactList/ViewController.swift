@@ -74,6 +74,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        var contact: Contacts!
+        
+        if inSearch{
+        contact = filteredSearch[indexPath.row]
+        }
+        else{
+            contact = contacts[indexPath.row]
+        }
+        
+        performSegueWithIdentifier("ContactDetailVC", sender: contact)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -109,6 +119,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             filteredSearch = contacts.filter({$0.name.rangeOfString(lower) != nil})
             collection.reloadData()
             
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ContactDetailVC"{
+            if let detailsVC = segue.destinationViewController as? ContactDetailVC{
+                if let contact = sender as? Contacts{
+                    detailsVC.contacts = contact
+                }
+            }
         }
     }
 }

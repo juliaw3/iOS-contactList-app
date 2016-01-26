@@ -133,10 +133,10 @@
             </objects>
             <point key="canvasLocation" x="337" y="313"/>
         </scene>
-        <!--View Controller-->
+        <!--Contact DetailVC-->
         <scene sceneID="GEF-uU-2qw">
             <objects>
-                <viewController id="Sbr-jL-x4o" sceneMemberID="viewController">
+                <viewController id="Sbr-jL-x4o" customClass="ContactDetailVC" customModule="ContactList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u9d-J5-leV"/>
                         <viewControllerLayoutGuide type="bottom" id="KT2-c8-4NJ"/>
@@ -144,8 +144,27 @@
                     <view key="view" contentMode="scaleToFill" id="wl9-FZ-snV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmS-zV-si8">
+                                <rect key="frame" x="163" y="253" width="346" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="346" id="QBk-1R-SXq"/>
+                                    <constraint firstAttribute="height" constant="21" id="Wxk-Uj-CaW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AmS-zV-si8" firstAttribute="centerX" secondItem="wl9-FZ-snV" secondAttribute="centerX" id="3Ke-8e-vBt"/>
+                            <constraint firstItem="AmS-zV-si8" firstAttribute="centerY" secondItem="wl9-FZ-snV" secondAttribute="centerY" id="yPq-Hc-D0M"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameLbl" destination="AmS-zV-si8" id="qET-Q5-yFf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpc-1s-oJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
