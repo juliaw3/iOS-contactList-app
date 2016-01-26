@@ -45,7 +45,7 @@
                                     <constraint firstItem="hvN-EW-947" firstAttribute="centerY" secondItem="iYj-kR-lgk" secondAttribute="centerY" id="lUJ-2K-VJQ"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bov-dU-tff">
+                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Search for Contact" translatesAutoresizingMaskIntoConstraints="NO" id="bov-dU-tff">
                                 <rect key="frame" x="0.0" y="38" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -106,8 +106,8 @@
                                             <constraint firstItem="1vR-71-sUa" firstAttribute="top" secondItem="659-OW-WMm" secondAttribute="topMargin" id="pJ1-fu-Ers"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="nameLbl" destination="1vR-71-sUa" id="dgK-3X-PkS"/>
-                                            <outlet property="numberLbl" destination="K4x-Wv-xLF" id="3nW-xD-TRw"/>
+                                            <outlet property="nameLbl" destination="1vR-71-sUa" id="xD8-FE-PaG"/>
+                                            <outlet property="numberLbl" destination="K4x-Wv-xLF" id="FM0-sC-UYG"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -125,11 +125,31 @@
                     </view>
                     <connections>
                         <outlet property="collection" destination="a9M-DR-B8m" id="lra-gq-6rg"/>
+                        <outlet property="searchBar" destination="bov-dU-tff" id="sHS-cJ-PFi"/>
+                        <segue destination="Sbr-jL-x4o" kind="show" identifier="ContactDetailVC" id="n1Z-Hq-DVD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="245" y="313"/>
+            <point key="canvasLocation" x="337" y="313"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GEF-uU-2qw">
+            <objects>
+                <viewController id="Sbr-jL-x4o" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u9d-J5-leV"/>
+                        <viewControllerLayoutGuide type="bottom" id="KT2-c8-4NJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wl9-FZ-snV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gpc-1s-oJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1000" y="313"/>
         </scene>
     </scenes>
     <resources>
