@@ -8,6 +8,7 @@
 
 import Foundation
 
-let URL = "https://solstice.applauncher.com/external/contacts.json"
+let URL_BASE = "https://solstice.applauncher.com/external/Contacts/id/"
+let URL_EXTENSION = ".json"
 
 typealias DownloadComplete = () -> ()

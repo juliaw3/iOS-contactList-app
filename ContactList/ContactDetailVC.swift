@@ -10,12 +10,25 @@ import UIKit
 
 class ContactDetailVC: UIViewController {
 
-    @IBOutlet weak var nameLbl: UILabel!
+
+    @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var street: UILabel!
+    @IBOutlet weak var cityStateZip: UILabel!
+
+    
+    
+    
+    
     var contacts: Contacts!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLbl.text = contacts.name
+        //nameLbl.text = contacts.name
+        
+        contacts.downloadContactDetails { () -> () in
+            //called when download complete
+            
+        }
         
     }
 
@@ -24,5 +37,8 @@ class ContactDetailVC: UIViewController {
         
     }
     
+    @IBAction func backBtnPressed(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
