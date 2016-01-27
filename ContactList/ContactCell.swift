@@ -11,9 +11,9 @@ import UIKit
 class ContactCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLbl: UILabel!
-
     @IBOutlet weak var numberLbl: UILabel!
     
+    @IBOutlet weak var thumbImg: UIImageView!
     var contacts: Contacts!
     
     func configureCell(contacts: Contacts){
@@ -22,7 +22,8 @@ class ContactCell: UICollectionViewCell {
         nameLbl.text = self.contacts.name
         numberLbl.text = self.contacts.number
      // ****  thumbImg.image = UIImage(named:   (need to parse the JSON for thumbimage)
-        
+        thumbImg.image = UIImage(named: "\(self.contacts.employeeId)")
+
         
     }
     

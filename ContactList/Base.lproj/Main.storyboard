@@ -10,19 +10,19 @@
             <string>HelveticaNeue</string>
             <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Bold</string>
+            <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue</string>
             <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
-            <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
             <string>HelveticaNeue-Bold</string>
@@ -65,9 +65,10 @@
                                 <rect key="frame" x="0.0" y="38" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a9M-DR-B8m">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a9M-DR-B8m">
                                 <rect key="frame" x="0.0" y="82" width="600" height="518"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="igQ-YN-wEJ">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="igQ-YN-wEJ">
                                     <size key="itemSize" width="598" height="94"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -81,7 +82,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="598" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image1_small" translatesAutoresizingMaskIntoConstraints="NO" id="wQE-0Z-17l">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="wQE-0Z-17l">
                                                     <rect key="frame" x="8" y="4" width="85" height="85"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="ueU-28-X86"/>
@@ -124,6 +125,7 @@
                                         <connections>
                                             <outlet property="nameLbl" destination="1vR-71-sUa" id="xD8-FE-PaG"/>
                                             <outlet property="numberLbl" destination="K4x-Wv-xLF" id="FM0-sC-UYG"/>
+                                            <outlet property="thumbImg" destination="wQE-0Z-17l" id="anj-Tl-cKW"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -468,9 +470,10 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="cityStateZip" destination="IfO-dJ-2VG" id="CXw-OL-nzT"/>
-                        <outlet property="email" destination="ZCX-om-1Ag" id="9Ic-Vz-W4b"/>
-                        <outlet property="street" destination="DKR-zh-rMK" id="UKg-yv-UPw"/>
+                        <outlet property="addressLbl" destination="IfO-dJ-2VG" id="cUT-xZ-e5m"/>
+                        <outlet property="emailLbl" destination="ZCX-om-1Ag" id="Gvq-gR-nUb"/>
+                        <outlet property="mainImg" destination="6bc-KT-1rg" id="mh6-H4-D9e"/>
+                        <outlet property="streetLbl" destination="DKR-zh-rMK" id="dKY-3m-LGc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpc-1s-oJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -479,6 +482,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="image1_small" width="60" height="60"/>
+        <image name="3" width="60" height="60"/>
     </resources>
 </document>

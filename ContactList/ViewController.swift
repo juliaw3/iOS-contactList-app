@@ -13,9 +13,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var contacts = [Contacts]()
+    
+   // var contacts = [Contacts]()
     var inSearch = false
     var filteredSearch = [Contacts]()
+    
+    var nameOfContact = [Contacts]()
+    var numberofContacts = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,28 +28,37 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.Done
         
-        parseContactsCSV()
+
+        parseJSON()
     }
-    
-    func parseContactsCSV(){
-        
-        let path = NSBundle.mainBundle().pathForResource("Contacts", ofType: "csv")!
+    func parseJSON(){
         do{
-            let csv = try CSV(contentsOfURL: path)
-            let rows = csv.rows
+            let data = NSData(contentsOfURL: NSURL(string: "https://solstice.applauncher.com/external/contacts.json")!)
             
-            for row in rows{
-                let contactId = Int(row["id"]!)!
-                let name = row["name"]!
-                let number = row["number"]!
+            let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+           
+            
+           // let numberofContacts = jsonResult.count
+            
+            for anItem in jsonResult as! [Dictionary<String, AnyObject>]{
+                let contacts = anItem["name"] as! String
+                let contactId = anItem["employeeId"] as! Int
                 
-                let contact = Contacts(name: name, employeeId: contactId, number: number)
-                contacts.append(contact)
+                if let phone = anItem["phone"] as? Dictionary<String, AnyObject>{
+                    let work = phone["work"] as! String
+                    
+                    let contact = Contacts(name: contacts, employeeId: contactId, number: work)
+                    print(contact.name)
+                    print(contact.number)
+                    nameOfContact.append(contact)
+                }
+                
+                            
             }
             
         }
-        catch let err as NSError{
-            print(err.debugDescription)
+        catch let error as NSError{
+            print(error.debugDescription)
         }
     }
 
@@ -53,6 +66,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactCell", forIndexPath: indexPath) as? ContactCell{
             
+            /*
             let contact: Contacts!
             if inSearch{
                 contact = filteredSearch[indexPath.row]
@@ -60,7 +74,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             else{
                 contact = contacts[indexPath.row]
             }
-            
+            */
+            let contact = nameOfContact[indexPath.row]
             cell.configureCell(contact)
             return cell
             
@@ -80,7 +95,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         contact = filteredSearch[indexPath.row]
         }
         else{
-            contact = contacts[indexPath.row]
+            contact = nameOfContact[indexPath.row]
         }
         
         performSegueWithIdentifier("ContactDetailVC", sender: contact)
@@ -91,7 +106,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if inSearch{
             return filteredSearch.count
         }
-        return contacts.count
+        return nameOfContact.count
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -116,7 +131,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         else{
             inSearch = true
             let lower = searchBar.text!.lowercaseString
-            filteredSearch = contacts.filter({$0.name.rangeOfString(lower) != nil})
+            filteredSearch = nameOfContact.filter({$0.name.rangeOfString(lower) != nil})
             collection.reloadData()
             
         }
