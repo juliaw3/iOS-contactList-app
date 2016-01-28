@@ -16,11 +16,17 @@ class Contacts {
     private var _company: String!
     private var _number: String!
     private var _street: String!
-    private var _birthday: String!
+    private var _birthdate: String!
     private var _email: String!
     private var _city: String!
     private var _state: String!
     private var _zip: String!
+    private var _homePhone: String!
+    private var _workPhone: String!
+    private var _mobilePhone: String!
+    private var _thumbImage: String!
+    
+    private var _favorite: Bool!
     
     private var _employeeId: Int!
     
@@ -71,6 +77,52 @@ class Contacts {
     var address: String{
         return ("\(_city) \(_state), \(_zip)")
     }
+    var name2: String{
+        if _name2 == nil{
+            _name2 = ""
+        }
+        return _name2
+    }
+    var company: String{
+        if _company == nil{
+            _company = ""
+        }
+        return _company
+    }
+    var workPhone: String{
+        if _workPhone == nil{
+            _workPhone = ""
+        }
+        return _workPhone
+    }
+    var homePhone: String{
+        if _homePhone == nil{
+            _homePhone = ""
+        }
+        return _homePhone
+    }
+    var mobilePhone: String{
+        if _mobilePhone == nil{
+            _mobilePhone = ""
+        }
+        return _mobilePhone
+    }
+    var birthdate: String{
+        if _birthdate == nil{
+            _birthdate = ""
+        }
+        return _birthdate
+    }
+    var sImage: String{
+        return _thumbImage
+    }
+    var favorite: Bool{
+        if _favorite == nil{
+            _favorite = false
+        }
+        return _favorite
+    }
+    
     
     
     init(name: String, employeeId: Int, number: String){
@@ -84,6 +136,8 @@ class Contacts {
     
     func downloadContactDetails(completed: DownloadComplete){
         
+       // self.parseJSON()
+        
         let url = NSURL(string: _contactUrl)!
         Alamofire.request(.GET, url).responseJSON{response in
         let result = response.result
@@ -92,6 +146,10 @@ class Contacts {
                 
                 if let email = dict["email"] as? String{
                     self._email = email
+                }
+                
+                if let favorite = dict["favorite"] as? Bool{
+                    self._favorite = favorite
                 }
                 
                 if let address = dict["address"] as? Dictionary<String, AnyObject>{
@@ -114,4 +172,40 @@ class Contacts {
         }
     }
     
+    func downloadContactDetails2(completed: DownloadComplete){
+        let url = NSURL(string: URL_MAIN)!
+        Alamofire.request(.GET, url).responseJSON{response in
+            let result = response.result
+            
+            if let dict = result.value as? [Dictionary<String, AnyObject>] {
+                if let name2 = dict[self.employeeId - 1]["name"] as? String{
+                    self._name2 = name2
+                }
+                if let birthdate = dict[self.employeeId - 1]["birthdate"] as? String{
+                    self._birthdate = birthdate
+                }
+                if let company = dict[self.employeeId - 1]["company"] as? String{
+                    self._company = company
+                }
+                if let phone = dict[self.employeeId - 1]["phone"] as? Dictionary<String, AnyObject>{
+                    if let workPhone = phone["work"] as? String{
+                        self._workPhone = workPhone
+                    }
+                    if let homePhone = phone["home"] as? String{
+                        self._homePhone = homePhone
+                    }
+                    if let mobilePhone = phone["mobile"] as? String{
+                        self._mobilePhone = mobilePhone
+                    }
+                }
+                /*
+                if let sImage = dict[self.employeeId]["smallImageURL"] as? String{
+                    self._thumbImage = sImage
+                }
+                */
+            }
+            completed()
+    }
+
+}
 }

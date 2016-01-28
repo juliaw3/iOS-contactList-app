@@ -23,6 +23,8 @@ class ContactCell: UICollectionViewCell {
         numberLbl.text = self.contacts.number
      // ****  thumbImg.image = UIImage(named:   (need to parse the JSON for thumbimage)
         thumbImg.image = UIImage(named: "\(self.contacts.employeeId)")
+        
+        
 
         
     }
