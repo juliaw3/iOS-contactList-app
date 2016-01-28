@@ -56,7 +56,7 @@ class ContactDetailVC: UIViewController {
         workPhoneLbl.text = contacts.workPhone
         homePhoneLbl.text = contacts.homePhone
         mobilePhoneLbl.text = contacts.mobilePhone
-        birthdateLbl.text = contacts.birthdate
+        birthdateLbl.text = contacts.newBirthDate2
         
         if contacts.favorite == true{
             goldStarBtn.hidden = false

@@ -48,8 +48,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     let work = phone["work"] as! String
                     
                     let contact = Contacts(name: contacts, employeeId: contactId, number: work)
-                    print(contact.name)
-                    print(contact.number)
                     nameOfContact.append(contact)
                 }
                 

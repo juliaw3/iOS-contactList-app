@@ -107,7 +107,7 @@ class Contacts {
         }
         return _mobilePhone
     }
-    var birthdate: String{
+    var newBirthDate2: String{
         if _birthdate == nil{
             _birthdate = ""
         }
@@ -180,12 +180,20 @@ class Contacts {
             if let dict = result.value as? [Dictionary<String, AnyObject>] {
                 if let name2 = dict[self.employeeId - 1]["name"] as? String{
                     self._name2 = name2
+                    
                 }
-                if let birthdate = dict[self.employeeId - 1]["birthdate"] as? String{
-                    self._birthdate = birthdate
-                }
+                
                 if let company = dict[self.employeeId - 1]["company"] as? String{
                     self._company = company
+                }
+                
+                if let birthdate = dict[self.employeeId - 1]["birthdate"] as? String{
+                    print(birthdate)
+                    let newBirthDate = Double(birthdate)!
+                    let date = NSDate(timeIntervalSince1970: newBirthDate)
+                    let newBirthDate2 = String(date)
+                    self._birthdate = newBirthDate2
+                    
                 }
                 if let phone = dict[self.employeeId - 1]["phone"] as? Dictionary<String, AnyObject>{
                     if let workPhone = phone["work"] as? String{
@@ -198,11 +206,7 @@ class Contacts {
                         self._mobilePhone = mobilePhone
                     }
                 }
-                /*
-                if let sImage = dict[self.employeeId]["smallImageURL"] as? String{
-                    self._thumbImage = sImage
-                }
-                */
+                
             }
             completed()
     }
