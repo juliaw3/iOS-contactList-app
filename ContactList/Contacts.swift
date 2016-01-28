@@ -25,6 +25,7 @@ class Contacts {
     private var _workPhone: String!
     private var _mobilePhone: String!
     private var _thumbImage: String!
+    private var _largeImage: String!
     
     private var _favorite: Bool!
     
@@ -122,6 +123,12 @@ class Contacts {
         }
         return _favorite
     }
+    var largeImage: String{
+        if _largeImage == nil{
+            _largeImage = ""
+        }
+        return _largeImage
+    }
     
     
     
@@ -135,8 +142,6 @@ class Contacts {
     }
     
     func downloadContactDetails(completed: DownloadComplete){
-        
-       // self.parseJSON()
         
         let url = NSURL(string: _contactUrl)!
         Alamofire.request(.GET, url).responseJSON{response in
@@ -167,6 +172,10 @@ class Contacts {
                     }
                     
                 }
+                if let largeImage = dict["largeImageURL"] as? String{
+                    self._largeImage = largeImage
+                    
+                }
             }
             completed()
         }
@@ -193,8 +202,8 @@ class Contacts {
                     let date = NSDate(timeIntervalSince1970: newBirthDate)
                     let newBirthDate2 = String(date)
                     self._birthdate = newBirthDate2
-                    
                 }
+                
                 if let phone = dict[self.employeeId - 1]["phone"] as? Dictionary<String, AnyObject>{
                     if let workPhone = phone["work"] as? String{
                         self._workPhone = workPhone
@@ -206,6 +215,7 @@ class Contacts {
                         self._mobilePhone = mobilePhone
                     }
                 }
+                
                 
             }
             completed()

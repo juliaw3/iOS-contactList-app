@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate  {
 
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var thumbImage: UIImageView!
     
-   // var contacts = [Contacts]()
+    
+    
     var inSearch = false
     var filteredSearch = [Contacts]()
     
@@ -37,13 +40,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
            
-            
            // let numberofContacts = jsonResult.count
             
             for anItem in jsonResult as! [Dictionary<String, AnyObject>]{
                 let contacts = anItem["name"] as! String
                 let contactId = anItem["employeeId"] as! Int
-                
+        
                 if let phone = anItem["phone"] as? Dictionary<String, AnyObject>{
                     let work = phone["work"] as! String
                     
@@ -51,7 +53,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     nameOfContact.append(contact)
                 }
                 
-                            
+        
             }
             
         }
@@ -59,21 +61,39 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             print(error.debugDescription)
         }
     }
-
+    /*
+    func downloadContactDetails2(completed: DownloadComplete){
+        let url = NSURL(string: URL_MAIN)!
+        Alamofire.request(.GET, url).responseJSON{response in
+            let result = response.result
+            
+            if let dict = result.value as? [Dictionary<String, AnyObject>] {
+          
+                if let smallImage = dict[contact.employeeId]["largeImageURL"] as? String{
+                    
+                
+                }
+            }
+            completed()
+        }
+    }
+*/
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactCell", forIndexPath: indexPath) as? ContactCell{
             
-            /*
             let contact: Contacts!
+            
+           // let contact = nameOfContact[indexPath.row]
+            
             if inSearch{
                 contact = filteredSearch[indexPath.row]
             }
             else{
-                contact = contacts[indexPath.row]
+                contact = nameOfContact[indexPath.row]
             }
-            */
-            let contact = nameOfContact[indexPath.row]
+            
+            
             cell.configureCell(contact)
             return cell
             
@@ -84,6 +104,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         
     }
+    
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
@@ -113,7 +134,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSizeMake( 600, 100) ///change this to format the size of the cells correctly
+        return CGSizeMake( 600, 100)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

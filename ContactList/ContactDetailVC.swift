@@ -67,7 +67,12 @@ class ContactDetailVC: UIViewController {
             silverStarBtn.hidden = false
         }
         
-
+        
+        if let filePath = NSBundle.mainBundle().pathForAuxiliaryExecutable(contacts.largeImage), image = UIImage(contentsOfFile: filePath){
+            mainImg.contentMode = .ScaleAspectFit
+            mainImg.image = image
+            
+        }
 
     }
     
